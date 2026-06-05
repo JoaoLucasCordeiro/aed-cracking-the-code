@@ -106,12 +106,20 @@ def generate_graph_without_cycle(
     return graph
 
 
-def generate_graph_with_cycle(
-    quantity: int,
-) -> Dict[int, List[int]]:
-    graph = generate_graph_without_cycle(quantity)
+def generate_graph_with_cycle(quantity):
 
-    if quantity > 2:
+    graph = {}
+
+    for node in range(quantity):
+
+        neighbors = []
+
+        if node + 1 < quantity:
+            neighbors.append(node + 1)
+
+        graph[node] = neighbors
+
+    if quantity > 1:
         graph[quantity - 1].append(0)
 
     return graph
