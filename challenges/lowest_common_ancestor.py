@@ -6,4 +6,21 @@ def lowest_common_ancestor(
     value1: int,
     value2: int,
 ) -> int:
-    raise NotImplementedError
+    low = min(value1, value2)
+    high = max(value1, value2)
+
+    node = root
+
+    while node is not None:
+        value = node.get_value()
+
+        if high < value:
+            node = node.get_left_child()
+
+        elif low > value:
+            node = node.get_right_child()
+
+        else:
+            return value
+
+    return None
